@@ -4,20 +4,20 @@ import { generateValidRow, generateRowWithout } from "./helpers/schema-test-util
 
 describe("todos schema", () => {
 	it("generates a valid row from todoSelectSchema", () => {
-		const row = generateValidRow(todoSelectSchema as Parameters<typeof generateValidRow>[0])
+		const row = generateValidRow(todoSelectSchema as unknown as Parameters<typeof generateValidRow>[0])
 		const result = todoSelectSchema.safeParse(row)
 		expect(result.success).toBe(true)
 	})
 
 	it("rejects a row missing id", () => {
-		const row = generateRowWithout(todoSelectSchema as Parameters<typeof generateValidRow>[0], "id")
+		const row = generateRowWithout(todoSelectSchema as unknown as Parameters<typeof generateValidRow>[0], "id")
 		const result = todoSelectSchema.safeParse(row)
 		expect(result.success).toBe(false)
 	})
 
 	it("rejects a row missing title", () => {
 		const row = generateRowWithout(
-			todoSelectSchema as Parameters<typeof generateValidRow>[0],
+			todoSelectSchema as unknown as Parameters<typeof generateValidRow>[0],
 			"title",
 		)
 		const result = todoSelectSchema.safeParse(row)
@@ -26,7 +26,7 @@ describe("todos schema", () => {
 
 	it("rejects a row missing completed", () => {
 		const row = generateRowWithout(
-			todoSelectSchema as Parameters<typeof generateValidRow>[0],
+			todoSelectSchema as unknown as Parameters<typeof generateValidRow>[0],
 			"completed",
 		)
 		const result = todoSelectSchema.safeParse(row)
@@ -34,7 +34,7 @@ describe("todos schema", () => {
 	})
 
 	it("generates a valid insert row from todoInsertSchema", () => {
-		const row = generateValidRow(todoInsertSchema as Parameters<typeof generateValidRow>[0])
+		const row = generateValidRow(todoInsertSchema as unknown as Parameters<typeof generateValidRow>[0])
 		const result = todoInsertSchema.safeParse(row)
 		expect(result.success).toBe(true)
 	})
